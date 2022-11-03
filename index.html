@@ -4,20 +4,90 @@
         function getComputerChoice(){
             let compOptions = ["rock","paper","scissors"];
             let computerChoice = compOptions[Math.floor(Math.random()*3)];
-            console.log(computerChoice);
+            console.log("Computer : " + computerChoice);
             return computerChoice;
         }
 
-        getComputerChoice();
-
         function getPlayerChoice(){
             let playerChoice = prompt("Choose between Rock, Paper or Scissor!");
-            playerChoice = playerChoice.toLowerCase();
-            console.log(playerChoice);
+            if (playerChoice.match(/rock|paper|scissors/i)){
+                playerChoice = playerChoice.toLowerCase();
+            }else{
+                playerChoice = prompt("Invalid choice, please choose between 'Rock', 'Paper' and 'Scissors'! P.S. careful with the spelling !");
+            }
+            console.log("You : " + playerChoice);
             return playerChoice;
         }
 
-        getPlayerChoice();
+        
+        let compScore = 0;
+        let playerScore = 0;
+
+        function playRound(playerSelection,computerSelection){
+            if (playerSelection === 'rock' && computerSelection === 'rock'){
+                return 'Rock meets rock, they roll away. Its a tie! Lets play again'
+            }else if (playerSelection === 'rock' && computerSelection === 'paper'){
+                compScore++;
+                return 'You chose rock but the computer chose paper. Computer wins this round!'
+            }else if (playerSelection === 'rock' && computerSelection === 'scissors'){
+                playerScore++;
+                return 'You chose rock and the computer chose scissors. You win!'
+            }else if (playerSelection === 'paper' && computerSelection === 'paper'){
+                return 'You both chose paper. Its a tie, we go again!'
+            }else if (playerSelection === 'paper' && computerSelection === 'rock'){
+                playerScore++;
+                return 'You chose paper and the computer chose rock. You win this round!'
+            }else if (playerSelection === 'paper' && computerSelection === 'scissors'){
+                compScore++;
+                return 'You chose paper but the computer chose scissors. Computer snips through to victory!'
+            }else if (playerSelection === 'scissors' && computerSelection === 'scissors'){
+                return 'You both chose scissors. Its a tie, play again!'
+            }else if (playerSelection === 'scissors' && computerSelection === 'paper'){
+                playerScore++;
+                return 'You chose scissors and the computer chose paper. You win this round!'
+            }else if (playerSelection === 'scissors' && computerSelection === 'rock'){
+                compScore++;
+                return 'You chose scissors but the computer chose rock. Computer wins!'
+            }else{
+
+            }
+        }
+        
+        function game(){
+            for (i=0; i<5; i++){
+                const playerSelection = getPlayerChoice();
+                const computerSelection = getComputerChoice();
+                console.log(playRound(playerSelection,computerSelection));
+                console.log("Your score: " + playerScore);
+                console.log("Computer's core: " + compScore);
+            }
+            result();
+        }    
+
+        function tiebreaker(){
+            const playerSelection = getPlayerChoice();
+            const computerSelection = getComputerChoice();
+            console.log(playRound(playerSelection,computerSelection));
+            result();
+        }
+
+        function result(){
+            if (compScore > playerScore){
+                console.log("Computer wins! Good game. Thanks for adding behavioral data to project Skynet.");
+                alert("Computer wins! Good game. Thanks for adding behavioral data to project Skynet.");
+            }else if(compScore < playerScore){
+                console.log("You win. Congratulations. Your details have been assigned to a T100 model. Thanks for adding behavioral data to project Skynet.");
+                alert("You win. Congratulations. Your details have been assigned to a T100 model. Thanks for adding behavioral data to project Skynet.");
+            }else{
+                tiebreaker();
+            }
+        }
+
+        game();
+
+        
+
+
     </script>
 </head>
 </html>
