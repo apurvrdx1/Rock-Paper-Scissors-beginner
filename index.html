@@ -4,7 +4,7 @@
         function getComputerChoice(){
             let compOptions = ["rock","paper","scissors"];
             let computerChoice = compOptions[Math.floor(Math.random()*3)];
-            console.log("Computer : " + computerChoice);
+            //console.log("Computer : " + computerChoice);
             return computerChoice;
         }
 
@@ -15,7 +15,7 @@
             }else{
                 playerChoice = prompt("Invalid choice, please choose between 'Rock', 'Paper' and 'Scissors'! P.S. careful with the spelling !");
             }
-            console.log("You : " + playerChoice);
+            //console.log("You : " + playerChoice);
             return playerChoice;
         }
 
@@ -52,14 +52,20 @@
 
             }
         }
-        
+        let roundNumber = 1;
+
         function game(){
             for (i=0; i<5; i++){
                 const playerSelection = getPlayerChoice();
                 const computerSelection = getComputerChoice();
+                console.log("Round " + roundNumber);
+                console.log("You: " + playerSelection);
+                console.log("Computer: " + computerSelection);
                 console.log(playRound(playerSelection,computerSelection));
                 console.log("Your score: " + playerScore);
                 console.log("Computer's score: " + compScore);
+                console.log("_______________________")
+                roundNumber++;
             }
             result();
         }    
@@ -67,16 +73,24 @@
         function tiebreaker(){
             const playerSelection = getPlayerChoice();
             const computerSelection = getComputerChoice();
+            console.log("Tiebreaker round ");
+            console.log("You: " + playerSelection);
+            console.log("Computer: " + computerSelection);
             console.log(playRound(playerSelection,computerSelection));
+            console.log("_______________________")
             result();
         }
 
         function result(){
             if (compScore > playerScore){
+                console.log("                           ")
                 console.log("Computer wins! Good game. Thanks for adding behavioral data to project Skynet.");
+                console.log("______________________________________________")
                 alert("Computer wins! Good game. Thanks for adding behavioral data to project Skynet.");
             }else if(compScore < playerScore){
+                console.log("                           ")
                 console.log("You win. Congratulations. Your details have been assigned to a T100 model. Thanks for adding behavioral data to project Skynet.");
+                console.log("______________________________________________")
                 alert("You win. Congratulations. Your details have been assigned to a T100 model. Thanks for adding behavioral data to project Skynet.");
             }else{
                 tiebreaker();
